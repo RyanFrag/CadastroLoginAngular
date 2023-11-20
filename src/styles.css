@@ -1,0 +1,199 @@
+body {
+    background-color: #f6f6f699;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif!important;
+    color: #333;
+}
+
+
+.btn-secondary {
+    background-color: #26c6da!important;
+    border-color: #26c6da!important;
+}
+ .btn-secondary:hover {
+    background-color: #1e9faf!important;
+    border-color: #1e9faf!important;
+}
+
+.btn-primary, .btn-primary:hover {
+    background-color: #007749!important;
+    border-color: #007749!important;
+}
+
+.logo-container {
+    background: #fff;
+    height: 100%;
+}
+
+
+
+.custom-swal-popup-class {
+    width: 300px;
+    color: #fff;
+    background-color: #ff5370; 
+  }
+
+.container{
+    height: 100%;
+}
+
+img{
+
+    width: 65%;
+}
+
+.container{
+    height: 100vh;
+}
+
+.content-login{
+    background-color: white;
+    width: 625px;
+    box-shadow: 0 1px 11px 0 #0000001f;
+}
+
+.btn{
+    margin-right: 10px;
+    width: 35%;
+}
+
+.btn-light {
+    background-color: #eee!important;
+    border-color: #eee!important;
+
+}
+
+h4 {
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.form-group{
+    margin-bottom: 20px;
+    
+}
+
+.form-label {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+}
+
+
+
+.linkSenha{
+    float: right;
+}
+
+.errors {
+    background-color: #ffe5e5;
+    width: 48%;
+    font-size: 11px;
+    border-radius: 5px;
+}
+
+a{
+    color: #007749
+}
+
+.is-invalid{
+    color: red;
+}
+
+hr {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.box{
+    margin-left: 10%;
+}
+.authentication-box h4 {
+    color: #333;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.form-check{
+    margin-left: 20px;
+}
+
+.botaoLogin{
+    width: 100%!important;
+    font-size: 15px;
+}
+
+.eyeiconLogon{
+    width: 115%!important;
+
+}
+
+.box hr{
+    margin-left: 0;
+    margin-right: 0;
+}
+.result-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .result-content {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    white-space: pre-wrap;
+  }
+
+  .error-message {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ff9999;
+    border-radius: 5px;
+    background-color: #ffe5e5;
+    color: #cc0000;
+    font-size: 14px;
+  }
+
+.logo{
+    background-color: #fff;
+}
+
+
+.radio-primary input[type=radio]:checked+label:before {
+    border-color: #007749;
+}
+
+input:disabled {
+    cursor: not-allowed;
+  }
+
+.form-check-input:checked {
+    background-color: #007749;
+    border-color: #007749;
+}
+
+small{
+    font-size: 80%;
+}
+
+.modal-dialog {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;	
+}
+
+.swal2-confirm{
+    background-color: #007749!important;
+}   

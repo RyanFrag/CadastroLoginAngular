@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-md-4 p-0">
+        <div class="d-flex justify-content-center align-items-center logo-container">
+            <div class="text-center">
+                <img class="mb-3 logo-login" src="../../assets/SC.png" />
+                <hr class="hr hr-blurry" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8 p-0">
+        <div class="d-flex justify-content-left align-items-center container">
+            <div class="box">
+                <h4>Espaço do Médico</h4>
+                <form class="content-login mt-4 p-4 mb-0" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="label-form" for="email"> Seu email</label>
+                            <input 
+                                [ngClass]="{'is-invalid': errorEmail}"  
+                                type="email" 
+                                class="form-control" 
+                                id="email" 
+                                name="email" 
+                                formControlName="email" 
+                                (focusout)="error()" 
+                            />
+                            <div *ngIf="errorEmail" class="text-danger">
+                                <span>
+                                    Informe seu e-mail.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="label-form" for="password">Senha </label>
+                            <div class="d-flex align-items-center">
+                                <input
+                                    [ngClass]="{'is-invalid': errorSenha}"                                 
+                                    maxlength="8"
+                                    [type]="changetype ? 'password' : 'text'"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    formControlName="password"
+                                    (focusout)="error()"
+                                />
+                                <button class="btn btn-light button " (click)="viewPass($event)">
+                                    <i [ngClass]="visible ? 'fa-solid fa-eye ' : 'fa-solid fa-eye-slash '" id="eyeicon3"></i>
+                                <strong> Visualizar </strong>
+                                </button>
+                            </div>
+                            <div *ngIf="errorSenha" class="text-danger">
+                                <span>
+                                    Informe sua senha.                                    
+                                </span>
+                            </div>
+                            <div class="mt-2 linkSenha">
+                                <a href="javascript:void(0)" (click)="openForgotPasswordModal()">Esqueceu a senha?</a>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-secondary botaoLogin" > <strong> Acessar com Login e Senha</strong> </button>
+
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary botaoLogin ml-2" >Acessar com certificado digital (Valid)</button>
+
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="resultadoDaRequisicao" class="result-container">
+                            <div class="result-title">Resultado da Requisição:</div>
+                            <div class="result-content">{{ resultadoDaRequisicao | json }}</div>
+                        </div>
+
+                        <div *ngIf="mensagemDeErro" class="result-container">
+                            <div class="result-title">Erro:</div>
+                            <div class="result-content">{{ mensagemDeErro }}</div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex text-center justify-content-center mt-2">
+                            <p>Não tem acesso?<a routerLink="/logon"> Cadastre-se </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,219 @@
+
+<div class="row">
+    <div class="col-md-4 p-0">
+        <div class="d-flex justify-content-center align-items-center logo-container">
+            <div class="text-center">
+                <img class="mb-3 logo-login" src="../../assets/SC.png" />
+                <hr class="hr hr-blurry" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 p-0">
+        <div class="d-flex justify-content-left align-items-center container">
+            <div class="box">
+                <h4>Cadastro</h4>
+                <form [formGroup]="form" class="content-login py-5 ps-4 pe-4" (ngSubmit)="onSubmit()">
+                    <div class="col">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label> Possui CRM em SC?</label>
+                                <div class="d-flex">
+                                    <div class="form-check mr-3  radio-primary">
+                                        <input type="radio" id="sim" name="radio" value="sim" class="form-check-input" (change)="toggleCrmField()" />
+                                        <label class="form-check-label" for="sim">Sim</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="nao" name="radio" value="nao" class="form-check-input" (change)="toggleCrmField()" checked />
+                                        <label class="form-check-label" for="nao">Não</label>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="form-group col-md-6">
+                                <label for="crm"> CRM </label>
+                                <div class="d-flex">
+                                    <input
+                                        class="form-control"
+                                        id="crm"
+                                        name="crm"
+                                        formControlName="crm"
+                                        [(ngModel)]="inputId"
+                                        (keyup.enter)="fetchData(inputId)"
+                                        (keypress)="onKeyPress($event)"
+                                        maxlength="10"
+                                    />
+
+                                    <button class="btn btn-light button " (click)="fetchData(inputId)" (click)="onClick($event)" [disabled]="crm?.disabled">
+                                        <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">  Nome Completo <span class="text-danger">*</span></label>
+                            <input [ngClass]="{'is-invalid': errorName}" type="text" class="form-control" id="name" name="name" formControlName="name" />
+                            <div *ngIf="errorName" class="text-danger">
+                                <span>
+                                    Nome é obrigatório                                
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="cpf">  CPF <span class="text-danger">*</span></label>
+                                <input 
+                                    class="form-control" 
+                                    id="cpf" 
+                                    name="cpf" 
+                                    formControlName="cpf" 
+                                    maxlength="14" 
+                                    mask="000.000.000-00" 
+                                    [ngClass]="{'is-invalid': errorCpf}" 
+                                    (input)="formatCpf()" 
+                                    placeholder="___.___.___-__" 
+                                />
+                                <div *ngIf="errorCpf" class="text-danger">
+                                    <span>
+                                        CPF é obrigatório                                    
+                                    </span>
+                                </div>
+                            </div>
+            
+                            <div class="form-group col-md-6">
+                                <label for="date">  Data de Nascimento <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input 
+                                        [ngClass]="{'is-invalid': errorDate}" 
+                                        type="date" 
+                                        class="form-control" 
+                                        name="dateFilter" 
+                                        id="dateFilter" 
+                                        formControlName="date" 
+                                    />
+                                </div>
+                                <div *ngIf="errorDate" class="text-danger">
+                                    <span>
+                                        Data de Nascimento é obrigatória
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="email">Email <span class="text-danger">*</span> </label>
+                                <input 
+                                [ngClass]="{'is-invalid': errorEmail}"  
+                                type="email" 
+                                class="form-control" 
+                                id="email" 
+                                name="email" 
+                                formControlName="email" 
+                                (focusout)="error()" 
+                            />
+                            <div *ngIf="errorEmail" class="text-danger">
+                                <span>
+                                    Email é obrigatório
+                                </span>
+                            </div>
+                        </div>
+            
+                            <div class="form-group col-md-6">
+                                <label for="confirmEmail">  Confirmar Email <span class="text-danger">*</span></label>
+                                <input 
+                                    class="form-control" 
+                                    [ngClass]="{'is-invalid': errorConfirmEmail}"                                     
+                                    id="confirmEmail" 
+                                    name="confirmEmail" 
+                                    formControlName="confirmEmail" 
+                                    (focusout)="error()"
+                                    />
+                                <div *ngIf="errorConfirmEmail" class="text-danger">
+                                    <span>
+                                        Email é obrigatório
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="password">  Criar Senha  <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input
+                                        [type]="changetype1 ? 'password' : 'text'"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        maxlength="8"
+                                        formControlName="password"
+                                        (input)="checkPasswordStrength()"
+                                        [ngClass]="{'is-invalid': errorPassword}"
+                                    />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-light button eyeiconLogon" (click)="viewPass(1, $event)">
+                                            <i [ngClass]="visiblePassword1 ? 'fa-solid fa-eye ' : 'fa-solid fa-eye-slash '" id="eyeiconLogon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div *ngIf="errorPassword" class="text-danger">
+                                    <span>
+                                        Senha é obrigatória                                    
+                                    </span>
+                                </div>
+                                <app-password-strength-bar [strength]="passwordStrength"></app-password-strength-bar>
+                                <div class="form-group">
+                                    <small>Recomendamos que a senha tenha letras maiúsculas e minúsculas, números e símbolos. Mínimo de 4 caracteres e Máximo de 8 caracteres</small>
+                                    <br>
+                                    <br>
+                                    <small><span class="text-danger">*</span> Informações obrigatórias</small>
+                                </div>
+
+
+                            </div>
+            
+                            <div class="form-group col-md-6">
+                                <label for="confirmPassword">  Confirmar Senha <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input
+                                        [type]="changetype2 ? 'password' : 'text'"
+                                        class="form-control"
+                                        id="confirmPassword"
+                                        maxlength="8"
+                                        name="confirmPassword"
+                                        formControlName="confirmPassword"
+                                        [ngClass]="{'is-invalid': errorConfirmPassword}"
+                                    />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-light button eyeiconLogon " (click)="viewPass(2, $event)">
+                                            <i [ngClass]="visiblePassword2 ? 'fa-solid fa-eye ' : 'fa-solid fa-eye-slash '" id="eyeicon2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div *ngIf="errorConfirmPassword" class="text-danger">
+                                    <span>
+                                        Confirme sua nova senha                                    
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <hr class="hr hr-blurry" />
+
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-light botaoLogin" routerLink="/login"><i  class="fa fa-angle-double-left"></i> <strong>Voltar</strong></button>
+                            <button #submitButton type="submit" class="btn btn-success botaoLogin">
+                                <i class="fa fa-check"></i> <strong> Cadastrar </strong>
+                              </button>
+                                                     
+                       
+                        </div>
+  
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
